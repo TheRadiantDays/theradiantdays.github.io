@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Radient Days</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div id="loader-text">INITIALIZING SYSTEM...</div>
+
+    <nav id="hud" class="hud-hidden">
+        <button class="nav-btn" onclick="navigateTo('home')">Home</button>
+        <button class="nav-btn" onclick="navigateTo('blog')">Archives</button>
+        <button class="nav-btn" onclick="navigateTo('arcade')">Arcade</button>
+        <button class="nav-btn" onclick="navigateTo('gallery')">Gallery</button>
+        <button class="nav-btn" onclick="navigateTo('social')">Socials</button>
+        <button class="nav-btn" onclick="navigateTo('about')">About</button>
+    </nav>
+
+    <div id="viewport">
+        <div id="world">
+
+            <!-- Abstract Background Decorations -->
+            <div class="bg-shape"
+                style="top: 20%; left: 20%; width: 400px; height: 400px; background: var(--neon-blue); border-radius: 50%;">
+            </div>
+            <div class="bg-shape"
+                style="top: 70%; left: 60%; width: 600px; height: 600px; background: var(--neon-pink); border-radius: 40%;">
+            </div>
+            <div class="bg-shape"
+                style="top: 10%; left: 80%; width: 300px; height: 300px; background: var(--neon-green); border-radius: 60%;">
+            </div>
+            <div class="bg-shape"
+                style="top: 5%; left: 45%; width: 350px; height: 350px; background: var(--neon-purple); border-radius: 50%;">
+            </div>
+            <div class="grid-overlay"></div>
+
+            <svg class="svg-lines" viewBox="0 0 300 300" preserveAspectRatio="none">
+                <path d="M 110 150 C 150 150, 150 50, 50 50" stroke="var(--neon-pink)" />
+                <path d="M 150 110 C 150 180, 250 180, 250 250" stroke="var(--neon-blue)" />
+                <path d="M 50 250 C 100 250, 150 150, 250 50" stroke="var(--neon-green)" />
+                <path d="M 150 110 L 150 50" stroke="var(--neon-purple)" stroke-dasharray="10 10" />
+            </svg>
+
+            <!-- SECTION: HOME -->
+            <div id="sec-home" class="section">
+
+                <h1 class="text-6xl md:text-8xl mb-4 font-black neon-text-blue text-center">AALOK PANDAY</h1>
+                <p class="text-xl md:text-2xl mb-6 max-w-2xl text-center" style="color: var(--text-sub)">Writer • Law
+                    Student • Creative Explorer</p>
+                <p class="text-lg mb-8 max-w-xl text-center italic" style="color: var(--neon-pink); opacity: 0.9">"Be
+                    optimistic and everything else will become positive automatically."</p>
+                <div class="flex gap-4">
+                    <button onclick="navigateTo('blog')"
+                        class="px-8 py-3 border border-cyan-400 text-cyan-400 font-bold hover:bg-cyan-400 hover:text-white transition duration-300 rounded uppercase tracking-widest">Read
+                        Blog</button>
+                    <button onclick="navigateTo('about')"
+                        class="px-8 py-3 border border-purple-400 text-purple-400 font-bold hover:bg-purple-400 hover:text-white transition duration-300 rounded uppercase tracking-widest">About
+                        Me</button>
+                </div>
+            </div>
+
+            <!-- SECTION: BLOG -->
+            <div id="sec-blog" class="section">
+
+                <h2 class="text-4xl md:text-6xl mb-6 neon-text-pink" id="blog-title">Archives</h2>
+
+                <!-- Blog Filters -->
+                <div class="blog-filters">
+                    <div class="filter-group">
+                        <label for="year-filter">Year</label>
+                        <select id="year-filter" class="filter-select" onchange="applyFilters()">
+                            <option value="all">All Years</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="category-filter">Category</label>
+                        <select id="category-filter" class="filter-select" onchange="applyFilters()">
+                            <option value="all">All Categories</option>
+                        </select>
+                    </div>
+                    <button class="clear-filters-btn" onclick="clearFilters()">Clear Filters</button>
+                </div>
+
+                <div id="blog-grid" class="blog-grid">
+                    <!-- Populated by JS -->
+                </div>
+
+                <div id="blog-reader">
+                    <button class="close-reader" onclick="closeArticle()">[ X ] CLOSE STREAM</button>
+                    <div class="max-w-3xl w-full mx-auto mt-8 h-full flex flex-col">
+                        <div class="text-xs text-pink-400 mb-2 font-mono" id="reader-date">LOADING DATE...</div>
+                        <div class="text-xs text-purple-400 mb-3 font-mono" id="reader-category">LOADING CATEGORY...
+                        </div>
+                        <h1 class="text-4xl md:text-5xl font-bold mb-6 neon-text-pink" id="reader-title">LOADING
+                            TITLE...</h1>
+                        <div class="w-full h-px bg-pink-500/30 mb-6"></div>
+                        <div id="reader-body" class="reader-content text-lg"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: ARCADE -->
+            <div id="sec-arcade" class="section">
+
+
+                <!-- Game Selector Carousel -->
+                <div id="arcade-menu" class="w-full h-full flex flex-col items-center justify-center">
+                    <h2 class="text-4xl md:text-6xl mb-8 neon-text-green">ARCADE</h2>
+                    <div class="carousel-container w-full max-w-2xl overflow-hidden relative">
+                        <button class="carousel-btn prev" onclick="rotateCarousel(-1)">❮</button>
+                        <div class="carousel-track flex transition-transform duration-500" id="game-carousel">
+                            <!-- Game 1: Snake -->
+                            <div
+                                class="carousel-item flex-shrink-0 w-full flex flex-col items-center justify-center p-4">
+                                <div class="game-card p-6 border border-green-500/50 rounded-xl bg-black/40 backdrop-blur hover:scale-105 transition cursor-pointer"
+                                    onclick="selectGame('snake')">
+                                    <svg class="w-24 h-24 mb-4 text-green-400 drop-shadow-[0_0_10px_rgba(74,222,128,0.5)] mx-auto"
+                                        viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="8"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M25 75 C 25 25, 75 75, 75 25" />
+                                        <circle cx="75" cy="25" r="5" fill="currentColor" stroke="none" />
+                                    </svg>
+                                    <h3 class="text-2xl font-bold text-green-400">HYPER SNAKE</h3>
+                                    <p class="text-sm text-gray-400 mt-2">Classic snake with a neon twist</p>
+                                </div>
+                            </div>
+                            <!-- Game 2: Tic Tac Toe -->
+                            <div
+                                class="carousel-item flex-shrink-0 w-full flex flex-col items-center justify-center p-4">
+                                <div class="game-card p-6 border border-blue-500/50 rounded-xl bg-black/40 backdrop-blur hover:scale-105 transition cursor-pointer"
+                                    onclick="selectGame('tictactoe')">
+                                    <svg class="w-24 h-24 mb-4 text-blue-400 drop-shadow-[0_0_10px_rgba(96,165,250,0.5)] mx-auto"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M8 3v18M16 3v18M3 8h18M3 16h18" stroke-opacity="0.5" />
+                                        <path d="M5 5l6 6M11 5l-6 6" stroke-width="2.5" transform="translate(1,1)" />
+                                        <circle cx="17" cy="17" r="3" stroke-width="2.5" />
+                                    </svg>
+                                    <h3 class="text-2xl font-bold text-blue-400">NEON TACTICS</h3>
+                                    <p class="text-sm text-gray-400 mt-2">Savage AI. Connect 4 to win.</p>
+                                </div>
+                            </div>
+                            <!-- Game 3: Dino -->
+                            <div
+                                class="carousel-item flex-shrink-0 w-full flex flex-col items-center justify-center p-4">
+                                <div class="game-card p-6 border border-pink-500/50 rounded-xl bg-black/40 backdrop-blur hover:scale-105 transition cursor-pointer"
+                                    onclick="selectGame('dino')">
+                                    <svg class="w-24 h-24 mb-4 text-pink-400 drop-shadow-[0_0_10px_rgba(244,114,182,0.5)] mx-auto"
+                                        viewBox="0 0 30 30" fill="none">
+                                        <rect width="30" height="30" fill="currentColor" />
+                                        <rect x="20" y="5" width="5" height="5" fill="black" />
+                                    </svg>
+                                    <h3 class="text-2xl font-bold text-pink-400">CYBER RUN</h3>
+                                    <p class="text-sm text-gray-400 mt-2">Jump the glitches. Run forever.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-btn next" onclick="rotateCarousel(1)">❯</button>
+                    </div>
+                    <div class="flex gap-2 mt-4">
+                        <div class="w-2 h-2 rounded-full bg-green-500 indicator active" id="ind-0"></div>
+                        <div class="w-2 h-2 rounded-full bg-gray-600 indicator" id="ind-1"></div>
+                        <div class="w-2 h-2 rounded-full bg-gray-600 indicator" id="ind-2"></div>
+                    </div>
+                </div>
+
+                <!-- Game Container: Snake -->
+                <div id="game-snake" class="game-view hidden w-full h-full flex flex-col items-center justify-center">
+                    <h2 class="text-3xl mb-4 mt-10 neon-text-green">HYPER SNAKE</h2>
+                    <div id="snake-container" class="relative">
+                        <canvas id="snakeCanvas"></canvas>
+                        <div class="arcade-ui">
+                            <span>SCORE: <span id="scoreVal">0</span></span>
+                            <span>HI: <span id="hiscoreVal">0</span></span>
+                        </div>
+                        <button id="start-btn-snake" class="game-start-btn" onclick="startSnake()">PRESS START</button>
+                    </div>
+                </div>
+
+                <!-- Game Container: Tic Tac Toe -->
+                <div id="game-tictactoe"
+                    class="game-view hidden w-full h-full flex flex-col items-center justify-center">
+                    <h2 class="text-3xl mb-4 mt-10 neon-text-blue">NEON TACTICS</h2>
+
+                    <div id="ttt-menu" class="flex flex-col items-center gap-4">
+                        <label class="flex items-center gap-2 text-lg text-blue-300 cursor-pointer">
+                            <input type="checkbox" id="ttt-player-first" class="w-5 h-5 accent-blue-500">
+                            I want to move first (Play as X)
+                        </label>
+                        <button class="game-start-btn text-xl" onclick="initTicTacToe()">START GAME</button>
+                    </div>
+
+                    <div id="ttt-game-area" class="hidden flex flex-col items-center">
+                        <div id="ttt-board"
+                            class="grid grid-cols-4 gap-2 p-2 bg-blue-900/20 rounded-xl border border-blue-500/30">
+                            <!-- Cells generated by JS -->
+                        </div>
+                        <div id="ttt-roast"
+                            class="mt-4 text-lg font-bold text-pink-400 h-16 flex items-center justify-center text-center px-4"
+                            style="font-family: 'Courier New', monospace;"></div>
+                        <div id="ttt-status" class="text-sm font-bold text-blue-400 h-6"></div>
+                        <button id="start-btn-ttt" class="game-start-btn mt-4" onclick="resetTicTacToe()">RESET
+                            GAME</button>
+                    </div>
+                </div>
+
+                <!-- Game Container: Dino -->
+                <div id="game-dino" class="game-view hidden w-full h-full flex flex-col items-center justify-center">
+                    <h2 class="text-3xl mb-4 mt-10 neon-text-pink">CYBER RUN</h2>
+                    <div id="dino-container"
+                        class="relative border-2 border-pink-500 w-full max-w-lg h-64 overflow-hidden bg-gray-900">
+                        <canvas id="dinoCanvas" width="600" height="200"></canvas>
+                        <div class="absolute top-2 right-2 text-pink-400 font-mono font-bold text-xl">SCORE: <span
+                                id="dinoScore">0</span></div>
+                        <div id="dino-overlay"
+                            class="absolute inset-0 flex items-center justify-center bg-black/80 z-10">
+                            <button id="start-btn-dino"
+                                class="game-start-btn text-pink-400 border-pink-400 hover:bg-pink-400 hover:text-black"
+                                onclick="startDino()">JUMP TO START</button>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mt-4">Space / Tap to Jump</p>
+                </div>
+            </div>
+
+            <!-- SECTION: GALLERY -->
+            <div id="sec-gallery" class="section">
+
+                <h2 class="text-4xl md:text-6xl mb-8 neon-text-yellow">Visual Stories</h2>
+                <div id="gallery-grid" class="gallery-grid">
+                    <!-- Dynamic Gallery Items will be loaded here -->
+                </div>
+            </div>
+
+
+
+            <!-- SECTION: SOCIAL -->
+            <div id="sec-social" class="section">
+
+                <h2 class="text-4xl md:text-6xl mb-8 neon-text-purple">Connect</h2>
+                <p class="text-lg mb-6 text-center max-w-xl" style="color: var(--text-sub)">Let's connect and
+                    collaborate on creative projects!</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+                    <a href="https://www.linkedin.com/in/aalok-panday-7602b6233/" target="_blank"
+                        rel="noopener noreferrer"
+                        class="group flex items-center gap-4 p-6 bg-gray-900/10 border border-blue-500/30 rounded-lg hover:bg-blue-500/10 hover:border-blue-400 transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(0,119,181,0.3)]">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="2" stroke="var(--neon-blue)" stroke-width="2"
+                                fill="none">
+                                <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2s"
+                                    repeatCount="indefinite" />
+                            </rect>
+                            <path d="M8 11V16M8 8V8.5" stroke="var(--neon-blue)" stroke-width="2"
+                                stroke-linecap="round" />
+                            <path d="M12 16V13.5M12 13.5V11M12 13.5C12 11 17 11 17 13.5V16" stroke="var(--neon-blue)"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <animate attributeName="stroke-opacity" values="0.7;1;0.7" dur="1.5s"
+                                    repeatCount="indefinite" />
+                            </path>
+                        </svg>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-xl group-hover:text-blue-400 transition"
+                                style="color: var(--text-main)">LinkedIn</span>
+                            <span class="text-xs font-mono" style="color: var(--text-sub)">/aalok-panday</span>
+                        </div>
+                    </a>
+                    <a href="mailto:aalok@example.com"
+                        class="group flex items-center gap-4 p-6 bg-gray-900/10 border border-pink-500/30 rounded-lg hover:bg-pink-500/10 hover:border-pink-400 transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(236,72,153,0.3)]">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="5" width="18" height="14" rx="2" stroke="var(--neon-pink)" stroke-width="2"
+                                fill="none">
+                                <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2.5s"
+                                    repeatCount="indefinite" />
+                            </rect>
+                            <path d="M3 7L12 13L21 7" stroke="var(--neon-pink)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40">
+                                <animate attributeName="stroke-dashoffset" from="40" to="0" dur="2s" fill="freeze" />
+                            </path>
+                            <circle cx="12" cy="12" r="1.5" fill="var(--neon-pink)">
+                                <animate attributeName="opacity" values="0;1;0" dur="2s" begin="2s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                        </svg>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-xl group-hover:text-pink-400 transition"
+                                style="color: var(--text-main)">Email</span>
+                            <span class="text-xs font-mono" style="color: var(--text-sub)">Get in touch</span>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/919322120946" target="_blank" rel="noopener noreferrer"
+                        class="group flex items-center gap-4 p-6 bg-gray-900/10 border border-green-500/30 rounded-lg hover:bg-green-500/10 hover:border-green-400 transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- WhatsApp chat bubble -->
+                            <path
+                                d="M12 2C6.5 2 2 6.5 2 12C2 13.8 2.5 15.5 3.4 17L2 22L7.2 20.6C8.7 21.4 10.3 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2Z"
+                                stroke="var(--neon-green)" stroke-width="2" fill="none" stroke-linejoin="round">
+                                <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2s"
+                                    repeatCount="indefinite" />
+                            </path>
+                            <!-- Phone handset inside -->
+                            <path
+                                d="M9.5 10.5C9.5 10.5 10 11.5 11 12.5C12 13.5 13 14 13 14C13 14 14.5 13.5 15 13C15.2 12.8 15.5 12.5 15.5 12.5L16.5 13.5C16.5 13.5 16 14.5 15 15C14 15.5 12.5 15.5 11 14.5C9.5 13.5 8.5 12 8 11C7.5 10 7.5 8.5 8 7.5C8.5 6.5 9.5 6 9.5 6L10.5 7C10.5 7 10.2 7.3 10 7.5C9.5 8 9 9.5 9.5 10.5Z"
+                                fill="var(--neon-green)" opacity="0.8" stroke="var(--neon-green)" stroke-width="0.5">
+                                <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s"
+                                    repeatCount="indefinite" />
+                            </path>
+                            <!-- Message notification dot -->
+                            <circle cx="17" cy="7" r="2" fill="var(--neon-green)">
+                                <animate attributeName="r" values="1.5;2.5;1.5" dur="1.5s" repeatCount="indefinite" />
+                            </circle>
+                        </svg>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-xl group-hover:text-green-400 transition"
+                                style="color: var(--text-main)">WhatsApp</span>
+                            <span class="text-xs font-mono" style="color: var(--text-sub)">Chat with me</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="mt-12 text-center">
+                    <p class="text-sm" style="color: var(--text-sub); opacity: 0.7;">Currently open to Legal Intern
+                        opportunities</p>
+                </div>
+            </div>
+
+            <!-- SECTION: ABOUT -->
+            <div id="sec-about" class="section">
+
+                <h2 class="text-4xl md:text-6xl mb-8"
+                    style="color: var(--text-main); text-shadow: 0 0 10px var(--text-main);">About Me</h2>
+                <div class="max-w-3xl text-center space-y-6 text-lg" style="color: var(--text-sub)">
+                    <p class="text-xl" style="color: var(--text-main);">Hey, I am <span
+                            class="neon-text-pink font-bold">Aalok Kumar Pandey</span>, a wannabe writer and currently a
+                        law student, who is just exploring the twists and turns of adult life.</p>
+
+                    <div class="grid md:grid-cols-2 gap-6 mt-8 text-left">
+                        <div class="p-6 border rounded-lg"
+                            style="border-color: var(--card-border); background: rgba(255,255,255,0.03);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L3 7V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V7L12 2Z"
+                                        stroke="var(--neon-blue)" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" fill="none" opacity="0.8">
+                                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s"
+                                            repeatCount="indefinite" />
+                                    </path>
+                                    <path d="M9 12L11 14L15 10" stroke="var(--neon-blue)" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-dasharray="20"
+                                        stroke-dashoffset="20">
+                                        <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1.5s"
+                                            fill="freeze" />
+                                    </path>
+                                </svg>
+                                <h3 class="text-xl font-bold neon-text-blue">EDUCATION</h3>
+                            </div>
+                            <p class="mb-2"><strong>Gujarat National Law University</strong></p>
+                            <p class="text-sm">Bachelor of Laws (LLB)</p>
+                            <p class="text-xs opacity-75">Jul 2024 – Apr 2029</p>
+                        </div>
+                        <div class="p-6 border rounded-lg"
+                            style="border-color: var(--card-border); background: rgba(255,255,255,0.03);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="9" width="18" height="13" rx="2" stroke="var(--neon-pink)"
+                                        stroke-width="2" fill="none">
+                                        <animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="2.5s"
+                                            repeatCount="indefinite" />
+                                    </rect>
+                                    <path d="M3 9L12 3L21 9" stroke="var(--neon-pink)" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                    <circle cx="12" cy="15" r="2" fill="var(--neon-pink)">
+                                        <animate attributeName="r" values="1.5;2.5;1.5" dur="2s"
+                                            repeatCount="indefinite" />
+                                    </circle>
+                                </svg>
+                                <h3 class="text-xl font-bold neon-text-pink">CURRENT</h3>
+                            </div>
+                            <p class="mb-2">Social Media Team Member</p>
+                            <p class="text-sm">GCESCJ, GCSEL, GEOC</p>
+                            <p class="text-xs opacity-75 mt-2">Open to: <span class="neon-text-green">Legal Intern
+                                    roles</span></p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-6 border rounded-lg"
+                        style="border-color: var(--card-border); background: rgba(255,255,255,0.03);">
+                        <div class="flex items-center justify-center gap-3 mb-4">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                                    stroke="var(--neon-purple)" stroke-width="2" fill="none" stroke-linejoin="round">
+                                    <animate attributeName="fill-opacity" values="0;0.3;0" dur="3s"
+                                        repeatCount="indefinite" />
+                                    <animateTransform attributeName="transform" type="rotate" from="0 12 12"
+                                        to="360 12 12" dur="20s" repeatCount="indefinite" />
+                                </path>
+                            </svg>
+                            <h3 class="text-xl font-bold neon-text-purple">TOP SKILLS</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-3 justify-center">
+                            <span class="px-4 py-2 rounded-full text-sm"
+                                style="background: rgba(188, 19, 254, 0.2); border: 1px solid var(--neon-pink);">Creative
+                                Writing</span>
+                            <span class="px-4 py-2 rounded-full text-sm"
+                                style="background: rgba(0, 243, 255, 0.2); border: 1px solid var(--neon-blue);">Public
+                                Speaking</span>
+                            <span class="px-4 py-2 rounded-full text-sm"
+                                style="background: rgba(188, 19, 254, 0.2); border: 1px solid var(--neon-pink);">Research
+                                Skills</span>
+                            <span class="px-4 py-2 rounded-full text-sm"
+                                style="background: rgba(0, 243, 255, 0.2); border: 1px solid var(--neon-blue);">Graphic
+                                Design</span>
+                            <span class="px-4 py-2 rounded-full text-sm"
+                                style="background: rgba(188, 19, 254, 0.2); border: 1px solid var(--neon-pink);">Video
+                                Editing</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-4 border rounded bg-white/5" style="border-color: var(--card-border)">
+                        <p class="font-mono text-sm">STATUS: <span class="text-green-400 animate-pulse">ONLINE</span>
+                        </p>
+                        <p class="font-mono text-sm mt-2">LOCATION: <span class="neon-text-pink">Pune, Maharashtra,
+                                India</span></p>
+                        <p class="font-mono text-sm mt-2">PRONOUNS: He/Him</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Story Modal (Moved outside viewport for proper z-index) -->
+    <div id="story-modal" class="story-modal">
+        <div class="story-content">
+            <button class="close-story" onclick="closeStory()">×</button>
+            <div class="story-image-container">
+                <img id="modal-image" src="" alt="Story Image">
+            </div>
+            <div class="story-text-container">
+                <p id="modal-text" class="story-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Init Overlay -->
+    <div id="init-overlay"
+        class="fixed inset-0 bg-black z-[9999] flex flex-col items-center justify-center cursor-pointer transition-opacity duration-1000">
+        <div class="text-green-500 font-mono text-2xl animate-pulse">SYSTEM OFFLINE</div>
+        <div class="text-gray-500 mt-4 text-sm">CLICK TO INITIALIZE</div>
+    </div>
+
+    <!-- Global Controls -->
+
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+{
+  "title": "Advent of ChatGPT",
+  "date": "June 15, 2021",
+  "category": "Tech",
+  "content": [
+    {
+      "tag": "h1",
+      "text": "<span style='font-size:2.4rem; font-weight:800;'>Advent of ChatGPT</span>"
+    },
+    {
+      "tag": "p",
+      "text": "You know, if someone had told me back in 8th grade that “AI will become a normal word in your vocab,” I would’ve laughed. Proper laughed. Because before Covid, “AI” was this distant sci-fi thing from Marvel movies and clickbait thumbnails. But then Covid came… and suddenly half the world was online 24/7. Including me. Obviously."
+    },
+    {
+      "tag": "h2",
+      "text": "<span style='font-size:1.6rem; font-weight:700;'>The First Time I Opened It</span>"
+    },
+    {
+      "tag": "p",
+      "text": "At first I didn’t even understand what ChatGPT was. Like, AI that can \"talk\"? AI that can \"think\"? Bro even my friends don’t answer properly. I remember sitting in 9th grade, online classes on one tab, Google Forms exams on another, and then a new tab on the side that said <b>ChatGPT</b>. The name itself sounded like a Tony Stark side-project. I typed something stupid like \"hey.\" It replied. Sometimes it was helpful. Sometimes completely off. It felt like an infant mind learning while you watched. Cute. A bit scary."
+    },
+    {
+      "tag": "p",
+      "text": "By 10th grade , still Covid, still classes online , ChatGPT wasn’t a toy anymore. It was normal. Like Google. Like video calls. Everyone started saying: “GPT se pooch le.” “GPT bata dega.” “GPT ko dekh ke likh lo.” Wild."
+    },
+    {
+      "tag": "h2",
+      "text": "<span style='font-size:1.6rem; font-weight:700;'>From Infant Mind to Supercomputer</span>"
+    },
+    {
+      "tag": "p",
+      "text": "It kept getting smarter. Monthly. Updates were like watching a toddler become a calculator that also tells jokes. At first basic answers. Then explanations. Then code. Then style. Then essays. Meanwhile I was eating biscuits and refreshing tabs. It stopped being 'a thing' and became a presence. Not scary. Not cozy. Just permanently there, like background noise in my room."
+    },
+    {
+      "tag": "p",
+      "text": "I keep thinking , did we grow up with AI or did AI grow up with us? Either way, it arrived quietly and we woke up inside it."
+    }
+  ]
+}

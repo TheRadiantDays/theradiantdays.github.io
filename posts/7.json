@@ -1,0 +1,35 @@
+{
+  "title": "Are Hackers Cool?",
+  "date": "August 08, 2022",
+  "category": "Tech",
+  "content": [
+    {
+      "tag": "h1",
+      "text": "<span style='font-size:2.4rem; font-weight:800;'>Are Hackers Cool?</span>"
+    },
+    {
+      "tag": "p",
+      "text": "I don’t know when exactly it happened, but in 11th grade my algorithm decided my personality should now be “futuristic.” Neon. Glitchy. Green code. Everything with that matrixy energy. I clicked one video about futuristic UI and then my feed became a parent that only buys one type of toy. Holograms, cyber dashboards, keyboard click sounds that make you feel smarter."
+    },
+    {
+      "tag": "h2",
+      "text": "<span style='font-size:1.6rem; font-weight:700;'>The Downfall Begins</span>"
+    },
+    {
+      "tag": "p",
+      "text": "Then I found a video: “Hacker Interfaces That Look Too Cool To Be Real.” And I connected two simple ideas: futuristic equals hacker. Hackers equal futuristic. Very original, I know. I decided I wanted that vibe. Not the crime part. Just the aesthetic. The \"I am smarter than your entire building\" energy."
+    },
+    {
+      "tag": "h2",
+      "text": "<span style='font-size:1.6rem; font-weight:700;'>VMs and Kali Linux</span>"
+    },
+    {
+      "tag": "p",
+      "text": "So what did I do? I downloaded a VM. And not just any VM. <b>Kali Linux</b>. The OS that looks like it could launch missiles, even though mostly it just sits there looking dramatic. I had zero clue what I was doing. Googling: “how to open folder in kali linux,” “what does sudo mean.” Still, booting it up felt elite. A secret system inside my system. Scans, tools I didn't understand, pretending to be a cyber ninja while actually opening and closing windows three times."
+    },
+    {
+      "tag": "p",
+      "text": "I realised hackers aren’t cool because of hoodies or green code. They’re cool because they have control. Real control. Over systems, tools, logic. I wanted that more than the hoodie. My hacking phase ended when the VM crashed repeatedly and I decided I liked watching tutorials more than learning commands. But the vibe stayed. Curiosity creates the feeling of being futuristic. Even now, when I see a slick UI, a part of me whispers: “That could’ve been you.” Then my laptop fans make airplane noises and I take the hint."
+    }
+  ]
+}
